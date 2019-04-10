@@ -40,6 +40,19 @@ def get_r_coeffs_distances_paired(neuron_pairs, matresults_C, coordinates):
 		pairwise[pair] = (r, distance)
 	return(pairwise)
 
+def get_results(data_path_folder):
+	# Load up all processed files found in base directory
+	results_names = [] # Name of folders where results were saved
+	compiled_results = {}
+	for f_name in glob.glob(data_path_folder + '*/*/*/''out.mat'):
+		name = f_name.split(os.sep)[-4]
+		compiled_results[name] = sio.loadmat(f_name) # Loaded mat files containing CNMF-E output
+		results_names.append(name) # Name of folders where results were saved
+		print(name)
+
+	return(compiled_results)
+
+
 def get_pairwise_comparisons(data_path_folder):
 	# Load up all processed files found in base directory
 	results_names = [] # Name of folders where results were saved
