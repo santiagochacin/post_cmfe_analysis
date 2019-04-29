@@ -29,6 +29,14 @@ def get_neuron_pairs(num_neurons):
 				neuron_pairs.append((i,j))
 	return(neuron_pairs)
 
+def get_r_coeffs(neuron_pairs, matresults_C):
+	pairwise = {}
+	for pair in tqdm(neuron_pairs):
+	#calculate pearsons r
+		r = stats.pearsonr(matresults_C[pair[0]], matresults_C[pair[1]])
+		pairwise[pair] = r[0]
+	return(pairwise)	
+
 
 def get_r_coeffs_distances_paired(neuron_pairs, matresults_C, coordinates):
 	pairwise = {}
